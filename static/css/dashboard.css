@@ -1,0 +1,77 @@
+/* Dashboard Styles */
+.result-item {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.result-item.pass {
+    background-color: #f0fdf4;
+    border-left: 4px solid #22c55e;
+}
+
+.result-item.warning {
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+}
+
+.result-item.fail {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+}
+
+.result-item .status {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    margin-right: 0.5rem;
+}
+
+.result-item.pass .status {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.result-item.warning .status {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.result-item.fail .status {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.result-item .name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.result-item .details {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+/* History Item Styles */
+.history-item {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-item .url {
+    font-weight: 600;
+    color: #111827;
+}
+
+.history-item .date {
+    font-size: 0.875rem;
+    color: #6b7280;
+} 

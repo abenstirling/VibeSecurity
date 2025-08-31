@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZMGGQNWFB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YZMGGQNWFB');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Security - Secure Vibes Only</title>
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Replit Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@replit/icon@0.0.1/dist/replit-icon.min.css">
+    <!-- Twitter Widget -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script>
+    const firebaseConfig = {
+        apiKey: "{{ firebase_config.api_key }}",
+        authDomain: "{{ firebase_config.auth_domain }}",
+        projectId: "{{ firebase_config.project_id }}",
+        storageBucket: "{{ firebase_config.storage_bucket }}",
+        messagingSenderId: "{{ firebase_config.messaging_sender_id }}",
+        appId: "{{ firebase_config.app_id }}",
+        measurementId: "{{ firebase_config.measurement_id }}"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    </script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <div class="relative bg-white">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="/" class="font-bold text-xl">Vibe Security</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-600 hover:text-gray-900" id="mobile-menu-button">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+                <!-- Desktop menu -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#pricing" class="text-gray-600 hover:text-gray-900">Pricing</a>
+                    <a href="/dashboard" id="authButton"
+                        class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                        Sign In
+                    </a>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div class="hidden md:hidden" id="mobile-menu">
+                <div class="pt-4 space-y-2">
+                    <a href="#pricing" class="block text-gray-600 hover:text-gray-900">Pricing</a>
+                    <a href="/dashboard" id="authButtonMobile"
+                        class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors block text-center">
+                        Sign In
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <h1 class="text-5xl tracking-tight font-extrabold text-gray-900 sm:text-6xl md:text-7xl">
+                    <span class="text-indigo-600">Secure</span> <span class="text-gray-900">Vibes Only</span>
+                </h1>
+                <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    Simple security scanning for the vibe coding age.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scanner Section -->
+    <div id="scanner" class="bg-gradient-to-r from-indigo-50 to-purple-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-[1.01] transition-transform duration-300">
+                <div class="text-center mb-8">
+                    <h2 class="text-5xl font-bold text-gray-900">Vibe Check</h2>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-globe text-gray-400"></i>
+                            </div>
+                            <input type="text" id="urlInput" placeholder="example.com"
+                                class="w-full pl-10 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-lg"
+>
+                        </div>
+                        <button id="scanButton"
+                            class="bg-indigo-600 text-white px-8 py-4 rounded-xl hover:bg-indigo-700 transition-colors text-lg font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled>
+                            <i class="fas fa-search"></i>
+                            Scan Now
+                        </button>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500 text-center">We'll analyze your website's security in seconds &
+                        show results below</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-xl shadow-xl">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+            <p class="mt-4 text-center text-gray-600">Analyzing your website...</p>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultsSection" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h3 id="scanResultsTitle" class="text-2xl font-bold text-gray-900 mb-6 cursor-pointer"
+                title="Secret: Click to copy outreach message!">Scan Results</h3>
+            <div id="scanResults" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">Why Should You Care?</h2>
+                <p class="mt-4 text-xl text-gray-600">Real stories from the frontlines of vibe coding security</p>
+            </div>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Amjad Masad's Tweet -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <blockquote class="twitter-tweet" data-media-max-width="560">
+                        <p lang="en" dir="ltr">Vibe Coding Tragedies and the Pit of Success<br><br>Heartbreaking to
+                            watch people lose months of work Vibe Coding in Cursor, an expert tool with zero
+                            guardrails.<br><br>At Replit, we obsess about getting customers to fall into the &quot;Pit
+                            of Success,&quot; effortlessly adopting winning practices.… <a
+                                href="https://t.co/n8fPTNHe5l">pic.twitter.com/n8fPTNHe5l</a></p>
+                        &mdash; Amjad Masad (@amasad) <a
+                            href="https://twitter.com/amasad/status/1902390399890776395?ref_src=twsrc%5Etfw">March 19,
+                            2025</a>
+                    </blockquote>
+                </div>
+
+                <!-- Klaas's Tweet -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <blockquote class="twitter-tweet">
+                        <p lang="en" dir="ltr">vibe coding is fun until you start leaking the database credentials in
+                            the client <a href="https://t.co/tUYe4UPzEn">pic.twitter.com/tUYe4UPzEn</a></p>
+                        &mdash; Klaas (@forgebitz) <a
+                            href="https://twitter.com/forgebitz/status/1903111698459902187?ref_src=twsrc%5Etfw">March
+                            21, 2025</a>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div id="pricing" class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">Security Scanning for Growing Startups</h2>
+                <p class="mt-4 text-xl text-gray-600">Enterprise-grade security scanning for startups with $1K+ MRR.
+                    Starting at $10/mo.</p>
+            </div>
+            <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-900">Hobbyist</h3>
+                    <p class="mt-4 text-4xl font-bold text-gray-900">$0</p>
+                    <p class="mt-2 text-gray-600">For side projects</p>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Basic security checks</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Instant results</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>10 prompts to fix</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>3 scans per day</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>No login required</span>
+                        </li>
+                    </ul>
+                    <button onclick="document.getElementById('scanner').scrollIntoView({behavior: 'smooth'})"
+                        class="mt-8 w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+                        Try Free
+                    </button>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 transform scale-105">
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white px-4 py-1 rounded-bl-lg rounded-tr-lg">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900">Pro</h3>
+                    <div class="mt-4 flex items-baseline">
+                        <span class="text-4xl font-bold text-gray-900">$10</span>
+                        <span class="text-lg text-gray-900">/mo</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">For startups with $1K+ MRR</p>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>AI-powered fix prompts</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Advanced security checks</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Unlimited scan history</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Unlimited scans</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Automated daily scans</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Priority email support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Slack/Discord alerts</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>PDF/CSV reports</span>
+                        </li>
+                    </ul>
+
+                    <a href="https://buy.stripe.com/dR63cq8I0aEd9xK7sG" target="_blank"
+                        class="mt-8 w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors block text-center">
+                        Get Started
+                    </a>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-900">Enterprise</h3>
+                    <div class="mt-4 flex items-baseline">
+                        <span class="text-4xl font-bold text-gray-900">$500</span>
+                        <span class="text-lg text-gray-900">/mo</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">For growing teams with $10K+ MRR</p>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Everything in Pro</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>5 team seats included</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Private site scanning</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Dedicated support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Custom API access</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Team collaboration</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>99.9% uptime SLA</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Custom security rules</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>SSO integration</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Compliance reporting</span>
+                        </li>
+                    </ul>
+
+                    <a href="mailto:hello@vibesecurity.co"
+                        class="mt-8 w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors block text-center">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <p class="mt-4 text-gray-400">Simple security scanning for the vibe coding age.
+                    </p>
+                    <br>
+                    <a href="https://www.producthunt.com/posts/vibe-security?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-vibe&#0045;security"
+                        target="_blank"><img
+                            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=961092&theme=dark&t=1746376071124"
+                            alt="Vibe&#0032;Security - Secure&#0032;vibes&#0032;only | Product Hunt"
+                            style="width: 250px; height: 54px;" width="250" height="54" /></a>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Product</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Company</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/blog" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Legal</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/privacy" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="/terms" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>© 2025 Vibe Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Popups -->
+    <div id="modal-container" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div id="modal-content" class="bg-white rounded-xl shadow-xl max-w-xl w-full max-h-[80vh] overflow-y-auto p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-xl font-bold text-gray-900"></h3>
+                <button id="modal-close" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="modal-body" class="prose prose-indigo"></div>
+        </div>
+    </div>
+
+    <!-- Custom Scripts -->
+    <script src="{{ url_for('static', path='js/auth.js') }}"></script>
+    <script src="{{ url_for('static', path='js/main.js') }}"></script>
+</body>
+
+</html>

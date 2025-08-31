@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YZMGGQNWFB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YZMGGQNWFB');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Security Blog</title>
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5046e4',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-xl font-bold text-gray-900">Vibe Security</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-600 hover:text-gray-900">Home</a>
+                    <a href="/blog" class="text-gray-600 hover:text-gray-900">Blog</a>
+                    <a href="/" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90">Start Scan</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-8">Security Blog</h1>
+        
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <!-- HTTPS Implementation -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Encryption</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">TLS</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">HTTPS Implementation</h2>
+                    <p class="text-gray-600 mb-4">Why your website needs HTTPS and how to implement it properly.</p>
+                    <a href="#https-implementation" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- SSL Certificate Validity -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Certificates</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">Trust</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">SSL Certificate Validity</h2>
+                    <p class="text-gray-600 mb-4">The importance of valid SSL certificates and common pitfalls.</p>
+                    <a href="#ssl-validity" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Content Security Policy -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">XSS</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-800">Content</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Content Security Policy</h2>
+                    <p class="text-gray-600 mb-4">Protecting your site from XSS attacks with CSP.</p>
+                    <a href="#csp" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- X-Frame-Options -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-800">Clickjacking</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">Framing</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">X-Frame-Options</h2>
+                    <p class="text-gray-600 mb-4">Preventing clickjacking attacks on your website.</p>
+                    <a href="#x-frame-options" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- HSTS -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">HTTPS</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-800">Enforcement</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">HTTP Strict Transport Security</h2>
+                    <p class="text-gray-600 mb-4">Enforcing HTTPS connections with HSTS.</p>
+                    <a href="#hsts" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Directory Listing -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">Files</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">Structure</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Directory Listing</h2>
+                    <p class="text-gray-600 mb-4">Preventing unauthorized access to your website's directory structure.</p>
+                    <a href="#directory-list" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Server Information Leakage -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Headers</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Server</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Server Information Leakage</h2>
+                    <p class="text-gray-600 mb-4">Keeping your server details private and secure.</p>
+                    <a href="#server-leak" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Admin Page Exposure -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">Admin</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-800">Access</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Admin Page Exposure</h2>
+                    <p class="text-gray-600 mb-4">Protecting your admin interfaces from unauthorized access.</p>
+                    <a href="#admin-exposure" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- HTTPS Form Submission -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Forms</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">Data</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">HTTPS Form Submission</h2>
+                    <p class="text-gray-600 mb-4">Ensuring secure form data transmission.</p>
+                    <a href="#https-forms" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Referrer Policy -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-800">Privacy</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-800">Headers</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Referrer Policy</h2>
+                    <p class="text-gray-600 mb-4">Controlling what information is sent in the Referer header.</p>
+                    <a href="#referrer-policy" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- CORS Configuration -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">API Security</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Cross-Origin</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">CORS Configuration</h2>
+                    <p class="text-gray-600 mb-4">Properly configuring Cross-Origin Resource Sharing for your API endpoints.</p>
+                    <a href="#cors-config" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Cookie Security -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">Authentication</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Session</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Cookie Security</h2>
+                    <p class="text-gray-600 mb-4">Protecting user sessions with secure cookie configurations.</p>
+                    <a href="#cookie-security" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Debug Mode Detection -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Development</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">Security</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Debug Mode Detection</h2>
+                    <p class="text-gray-600 mb-4">Identifying and disabling debug features in production environments.</p>
+                    <a href="#debug-mode" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Redirect Analysis -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-800">Navigation</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-800">Phishing</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Redirect Analysis</h2>
+                    <p class="text-gray-600 mb-4">Securing your website's redirects to prevent phishing attacks.</p>
+                    <a href="#redirect-analysis" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Rate Limiting -->
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-800">Performance</span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">DDoS</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Rate Limiting</h2>
+                    <p class="text-gray-600 mb-4">Protecting your API and website from abuse and DDoS attacks.</p>
+                    <a href="#rate-limiting" class="text-primary hover:text-primary/80 flex items-center">
+                        Read more 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Blog Content -->
+        <div class="mt-16 space-y-16">
+            <!-- HTTPS Implementation -->
+            <section id="https-implementation" class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Encryption</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">TLS</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">HTTPS Implementation</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> HTTPS (Hypertext Transfer Protocol Secure) encrypts data between your website and users' browsers.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> Critical - Without HTTPS, all data is transmitted in plain text.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> A user logs into your website over HTTP. Their username and password are sent in plain text. Anyone on the same network (like public WiFi) can intercept and read these credentials.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Obtain an SSL certificate and configure your web server to use HTTPS. Most hosting providers offer free SSL certificates through Let's Encrypt.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SSL Certificate Validity -->
+            <section id="ssl-validity" class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Certificates</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">Trust</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">SSL Certificate Validity</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> SSL certificates verify your website's identity and enable encrypted connections.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> High - Invalid certificates can lead to security warnings or man-in-the-middle attacks.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> Your SSL certificate expires. Users see scary browser warnings and might leave your site. Attackers could potentially intercept traffic if users ignore these warnings.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Set up certificate auto-renewal and monitor expiration dates. Use tools like Certbot for automatic renewal.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Content Security Policy -->
+            <section id="csp" class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">XSS</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-800">Content</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Content Security Policy</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> CSP is a security layer that helps prevent XSS attacks by controlling which resources can be loaded.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> High - Without CSP, your site is vulnerable to XSS attacks.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> An attacker injects malicious JavaScript into your comment section. Without CSP, this script runs in users' browsers, potentially stealing their session cookies.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Implement a strict CSP header that only allows scripts from trusted sources. Start with a restrictive policy and gradually loosen it as needed.
+                    </p>
+                </div>
+            </section>
+
+            <!-- X-Frame-Options -->
+            <section id="x-frame-options" class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-800">Clickjacking</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">Framing</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">X-Frame-Options</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> Prevents your website from being embedded in iframes, protecting against clickjacking attacks.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> Medium - Clickjacking can trick users into performing unwanted actions.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> An attacker embeds your login page in an invisible iframe. Users think they're clicking on a game, but they're actually clicking your login button, potentially revealing their credentials.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Set the X-Frame-Options header to "DENY" or "SAMEORIGIN" to prevent your site from being framed by other domains.
+                    </p>
+                </div>
+            </section>
+
+            <!-- HSTS -->
+            <section id="hsts" class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">HTTPS</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-800">Enforcement</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">HTTP Strict Transport Security</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> HSTS forces browsers to use HTTPS for all connections to your site.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> High - Prevents SSL stripping attacks and ensures secure connections.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> A user types "example.com" in their browser. Without HSTS, they might be redirected to HTTP first, making them vulnerable to man-in-the-middle attacks.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Add the Strict-Transport-Security header with a long max-age value (e.g., 31536000 for one year) and includeSubDomains for full protection.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Directory Listing -->
+            <section id="directory-list" class="bg-white rounded-lg shadow-sm p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Directory Listing</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> Directory listing exposes the contents of your website's directories to anyone who knows the URL.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> High - Can reveal sensitive files and directory structure.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> An attacker finds your backup directory at example.com/backups/. They can see and download all your database backups, configuration files, and other sensitive data.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Disable directory listing in your web server configuration. For Apache, use "Options -Indexes" in .htaccess. For Nginx, set "autoindex off;" in server block.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Server Information Leakage -->
+            <section id="server-leak" class="bg-white rounded-lg shadow-sm p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Server Information Leakage</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> When your server reveals too much information about its configuration and software versions.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> Medium - Helps attackers identify vulnerabilities to exploit.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> Your server headers show "Server: Apache/2.4.29 (Ubuntu)". Attackers can look up known vulnerabilities for this specific version and target them.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Minimize server information in headers. Remove version numbers and unnecessary details. Use security headers like "Server-Tokens: Prod" in Apache.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Admin Page Exposure -->
+            <section id="admin-exposure" class="bg-white rounded-lg shadow-sm p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Admin Page Exposure</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> When your admin interfaces are publicly accessible without proper protection.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> Critical - Direct access to administrative functions.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> Your WordPress admin page at example.com/wp-admin/ is accessible to anyone. Attackers can try common passwords or exploit known vulnerabilities.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Implement strong authentication, IP whitelisting, and consider using a separate admin domain or VPN access.
+                    </p>
+                </div>
+            </section>
+
+            <!-- HTTPS Form Submission -->
+            <section id="https-forms" class="bg-white rounded-lg shadow-sm p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">HTTPS Form Submission</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> Ensuring all forms submit data over encrypted HTTPS connections.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> High - Form data can contain sensitive information.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> Your contact form submits to "http://" instead of "https://". User messages containing personal information are sent in plain text.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Always use absolute HTTPS URLs in form actions. Implement HSTS and regularly check for mixed content warnings.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Referrer Policy -->
+            <section id="referrer-policy" class="bg-white rounded-lg shadow-sm p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Referrer Policy</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> Controls how much referrer information is sent when users navigate away from your site.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> Medium - Can leak sensitive URLs and parameters.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> A user clicks a link from your admin panel. The full URL, including session tokens, is sent to the external site in the Referer header.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Set Referrer-Policy header to "strict-origin-when-cross-origin" or "no-referrer-when-downgrade" for most sites.
+                    </p>
+                </div>
+            </section>
+
+            <!-- CORS Configuration -->
+            <section id="cors-config" class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">API Security</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Cross-Origin</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">CORS Configuration</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> CORS (Cross-Origin Resource Sharing) controls which domains can access your API endpoints.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> High - Misconfigured CORS can lead to data leaks and CSRF attacks.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4 border-l-4 border-purple-500">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> Your API has "Access-Control-Allow-Origin: *" header. Any website can make requests to your API and access sensitive user data.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Configure CORS to only allow specific trusted domains. Use proper HTTP methods and headers. Consider using a CORS middleware in your framework.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Cookie Security -->
+            <section id="cookie-security" class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">Authentication</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">Session</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Cookie Security</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> Secure cookie configuration prevents session hijacking and CSRF attacks.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> Critical - Insecure cookies can lead to account takeovers.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4 border-l-4 border-red-500">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> Your session cookie doesn't have the "Secure" and "HttpOnly" flags. An attacker can steal it through XSS or man-in-the-middle attacks.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Always set Secure, HttpOnly, and SameSite attributes. Use short expiration times and implement proper CSRF protection.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Debug Mode Detection -->
+            <section id="debug-mode" class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Development</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">Security</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Debug Mode Detection</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> Debug features in production can expose sensitive information and system details.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> High - Debug information can reveal system internals and vulnerabilities.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4 border-l-4 border-green-500">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> Your Django app has DEBUG=True in production. Error pages show full stack traces, database queries, and environment variables.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Always disable debug mode in production. Use proper error logging instead. Implement environment-based configuration.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Redirect Analysis -->
+            <section id="redirect-analysis" class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-800">Navigation</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-800">Phishing</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Redirect Analysis</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> Uncontrolled redirects can be exploited for phishing attacks and malware distribution.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> Medium - Can be used to trick users into visiting malicious sites.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4 border-l-4 border-indigo-500">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> Your login page redirects to any URL provided in the "next" parameter. Attackers can create links that redirect to phishing sites after login.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Validate and sanitize all redirect URLs. Maintain a whitelist of allowed domains. Use relative URLs when possible.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Rate Limiting -->
+            <section id="rate-limiting" class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-800">Performance</span>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-teal-100 text-teal-800">DDoS</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Rate Limiting</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">
+                        <strong>What is it?</strong> Rate limiting controls how many requests a client can make within a specific time period.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Severity:</strong> High - Without rate limiting, your site is vulnerable to DDoS and brute force attacks.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-md mb-4 border-l-4 border-orange-500">
+                        <p class="text-gray-800">
+                            <strong>Example:</strong> Your login endpoint has no rate limiting. Attackers can try thousands of password combinations per minute.
+                        </p>
+                    </div>
+                    <p class="text-gray-600">
+                        <strong>Solution:</strong> Implement rate limiting at multiple levels (IP, user, endpoint). Use tools like Redis for distributed rate limiting. Set appropriate limits based on normal usage patterns.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4">Vibe Security</h3>
+                    <p class="text-gray-400">Simple security scanning for the modern web.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Product</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/#pricing" class="text-gray-400 hover:text-white">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Company</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/blog" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Legal</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/privacy" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="/terms" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>© 2025 Vibe Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

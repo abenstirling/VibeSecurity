@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZMGGQNWFB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YZMGGQNWFB');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Vibe Security</title>
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script>
+    const firebaseConfig = {
+        apiKey: "{{ firebase_config.api_key }}",
+        authDomain: "{{ firebase_config.auth_domain }}",
+        projectId: "{{ firebase_config.project_id }}",
+        storageBucket: "{{ firebase_config.storage_bucket }}",
+        messagingSenderId: "{{ firebase_config.messaging_sender_id }}",
+        appId: "{{ firebase_config.app_id }}",
+        measurementId: "{{ firebase_config.measurement_id }}"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    </script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex justify-between items-center">
+            <div class="flex">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/" class="font-bold text-xl">Vibe Security</a>
+                </div>
+            </div>
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button type="button" class="text-gray-600 hover:text-gray-900" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Desktop menu -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="/#pricing" class="text-gray-600 hover:text-gray-900">Pricing</a>
+                <a href="/dashboard" id="authButton"
+                    class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                    Sign In
+                </a>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-4 space-y-2">
+                <a href="/#pricing" class="block text-gray-600 hover:text-gray-900">Pricing</a>
+                <a href="/dashboard" id="authButtonMobile"
+                    class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors block text-center">
+                    Sign In
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-8">Terms of Service</h1>
+            
+            <div class="prose prose-lg max-w-none">
+                <p class="text-gray-600 mb-6">
+                    <strong>Effective Date:</strong> {{ current_date or "January 1, 2024" }}
+                </p>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">1. Acceptance of Terms</h2>
+                <p class="text-gray-700 mb-6">
+                    By accessing or using Vibe Security's services, you agree to be bound by these Terms of Service 
+                    and our Privacy Policy. If you do not agree to these terms, please do not use our services.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">2. Description of Service</h2>
+                <p class="text-gray-700 mb-4">
+                    Vibe Security provides web-based security scanning tools that analyze websites for potential 
+                    security vulnerabilities and provide recommendations for improvement.
+                </p>
+                <ul class="list-disc ml-6 text-gray-700 mb-6">
+                    <li>Automated security scanning of websites and web applications</li>
+                    <li>Security reports and recommendations</li>
+                    <li>Scan history and management tools</li>
+                    <li>Premium features for advanced users</li>
+                </ul>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">3. User Accounts</h2>
+                <p class="text-gray-700 mb-6">
+                    To access certain features of our service, you must create an account. You are responsible for:
+                </p>
+                <ul class="list-disc ml-6 text-gray-700 mb-6">
+                    <li>Maintaining the confidentiality of your account credentials</li>
+                    <li>All activities that occur under your account</li>
+                    <li>Providing accurate and up-to-date information</li>
+                    <li>Notifying us immediately of any unauthorized use</li>
+                </ul>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">4. Acceptable Use</h2>
+                <p class="text-gray-700 mb-4">You agree to use our services only for lawful purposes and in accordance with these terms. You agree NOT to:</p>
+                <ul class="list-disc ml-6 text-gray-700 mb-6">
+                    <li>Scan websites without proper authorization</li>
+                    <li>Use our services for illegal or malicious purposes</li>
+                    <li>Attempt to circumvent security measures or rate limits</li>
+                    <li>Reverse engineer or attempt to extract source code</li>
+                    <li>Share your account credentials with others</li>
+                    <li>Interfere with or disrupt our services</li>
+                </ul>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">5. Subscription and Payment</h2>
+                <p class="text-gray-700 mb-6">
+                    Our service offers both free and premium tiers. Premium subscriptions are billed monthly 
+                    and automatically renew unless cancelled. You may cancel your subscription at any time 
+                    through your account settings.
+                </p>
+                <ul class="list-disc ml-6 text-gray-700 mb-6">
+                    <li>Free tier includes basic scanning features with limitations</li>
+                    <li>Premium tier includes advanced features and unlimited scans</li>
+                    <li>All fees are non-refundable except as required by law</li>
+                    <li>We reserve the right to change pricing with advance notice</li>
+                </ul>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">6. Intellectual Property</h2>
+                <p class="text-gray-700 mb-6">
+                    The Vibe Security service, including all content, features, and functionality, is owned by 
+                    us and is protected by copyright, trademark, and other intellectual property laws.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">7. Disclaimers and Limitations</h2>
+                <p class="text-gray-700 mb-6">
+                    Our security scanning service is provided "as is" without warranties of any kind. 
+                    We make no guarantees about the completeness, accuracy, or effectiveness of our scans.
+                </p>
+                <ul class="list-disc ml-6 text-gray-700 mb-6">
+                    <li>Security scans may not detect all vulnerabilities</li>
+                    <li>We are not responsible for actions taken based on scan results</li>
+                    <li>Our liability is limited to the amount paid for the service</li>
+                    <li>We do not warrant uninterrupted or error-free service</li>
+                </ul>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">8. Privacy and Data</h2>
+                <p class="text-gray-700 mb-6">
+                    Your privacy is important to us. Please review our Privacy Policy to understand how 
+                    we collect, use, and protect your information. By using our services, you consent 
+                    to our data practices as described in our Privacy Policy.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">9. Termination</h2>
+                <p class="text-gray-700 mb-6">
+                    We may terminate or suspend your account and access to our services at our sole discretion, 
+                    without notice, for conduct that we believe violates these terms or is harmful to other users.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">10. Changes to Terms</h2>
+                <p class="text-gray-700 mb-6">
+                    We reserve the right to modify these terms at any time. We will notify users of material 
+                    changes via email or through our service. Continued use after changes constitutes acceptance.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">11. Governing Law</h2>
+                <p class="text-gray-700 mb-6">
+                    These terms are governed by the laws of the jurisdiction in which Vibe Security operates, 
+                    without regard to conflict of law principles.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">12. Contact Information</h2>
+                <p class="text-gray-700 mb-6">
+                    If you have any questions about these Terms of Service, please contact us through our 
+                    website or email us directly.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4">Vibe Security</h3>
+                    <p class="text-gray-400">Simple security scanning for the modern web.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Product</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/#pricing" class="text-gray-400 hover:text-white">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Company</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/blog" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Legal</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/privacy" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="/terms" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>© 2025 Vibe Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Scripts -->
+    <script src="{{ url_for('static', path='js/auth.js') }}"></script>
+    <script>
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+
+</html>

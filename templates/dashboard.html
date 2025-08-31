@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZMGGQNWFB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YZMGGQNWFB');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Security - Dashboard</title>
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script>
+    const firebaseConfig = {
+        apiKey: "{{ firebase_config.api_key }}",
+        authDomain: "{{ firebase_config.auth_domain }}",
+        projectId: "{{ firebase_config.project_id }}",
+        storageBucket: "{{ firebase_config.storage_bucket }}",
+        messagingSenderId: "{{ firebase_config.messaging_sender_id }}",
+        appId: "{{ firebase_config.app_id }}",
+        measurementId: "{{ firebase_config.measurement_id }}"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    </script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Top Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="/" class="font-bold text-xl">Vibe Security</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div id="userInfo" class="hidden">
+                        <span id="userEmail" class="mr-4 text-gray-600"></span>
+                        <span id="premiumBadge"
+                            class="hidden px-2 py-1 text-xs rounded-full bg-indigo-100 text-indigo-800 mr-4">Premium</span>
+                        <a href="https://billing.stripe.com/p/login/00g9BR4Qm9S22mkbII" target="_blank"
+                            class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors mr-4">
+                            Manage Subscription
+                        </a>
+                        <button id="logoutButton"
+                            class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                            Sign Out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section (shown when not logged in) -->
+    <div id="loginSection" class="max-w-md mx-auto mt-16 px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Sign In</h2>
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="loginEmail" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="loginPassword" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border">
+                </div>
+                <div id="loginError" class="text-red-500 text-sm hidden"></div>
+                <button type="submit"
+                    class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                    Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Content (shown when logged in) -->
+    <div id="dashboardContent" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Scanner Section -->
+        <div id="scanner" class="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900">Vibe Check</h2>
+                <p class="mt-2 text-gray-600">Enter your website URL to start scanning</p>
+                <p class="mt-1 text-indigo-600 font-medium">Premium User: All 20 security tests enabled</p>
+            </div>
+            <div class="flex gap-4 max-w-2xl mx-auto">
+                <input type="text" id="urlInput" placeholder="https://example.com"
+                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                <button id="scanButton"
+                    class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+                    Scan Now
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loadingScreen"
+            class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white p-8 rounded-xl shadow-xl">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+                <p class="mt-4 text-center text-gray-600">Analyzing your website...</p>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="hidden bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Scan Results</h3>
+            <div id="scanResults" class="space-y-4"></div>
+        </div>
+
+        <!-- Scheduled Scans Section -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold text-gray-900">Scheduled Scans</h3>
+                <button id="scheduleScanBtn"
+                    class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors hover:bg-indigo-700">
+                    Schedule New Scan
+                </button>
+            </div>
+
+            <div id="scheduledScansList" class="space-y-4">
+                <!-- Scheduled scans will be populated here -->
+            </div>
+        </div>
+
+        <!-- Schedule Scan Modal -->
+        <div id="scheduleScanModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden">
+            <div class="flex items-center justify-center min-h-screen p-4">
+                <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Schedule a New Scan</h3>
+                        <div class="mb-4">
+                            <label for="scanUrl" class="block text-sm font-medium text-gray-700 mb-1">Select a URL to
+                                Schedule</label>
+                            <select id="scanUrl"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                <option value="">Select a URL from your scan history</option>
+                            </select>
+                        </div>
+                        <div class="flex justify-end space-x-3">
+                            <button id="cancelScheduleBtn"
+                                class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                Cancel
+                            </button>
+                            <button id="confirmScheduleBtn"
+                                class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Schedule Scan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scan History Section -->
+        <div id="historySection" class="bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Scan History</h3>
+            <div id="scanHistory" class="space-y-4">
+                <p id="loadingHistory" class="text-gray-600">Loading scan history...</p>
+                <p id="noHistory" class="hidden text-gray-600">No scan history found. Try scanning a website!</p>
+                <div id="historyList" class="hidden divide-y divide-gray-200"></div>
+
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <button id="manualHistoryRefreshBtn" class="text-indigo-600 text-sm hover:text-indigo-800">
+                        <i class="fas fa-sync-alt mr-1"></i> Manual Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Scripts -->
+    <script src="{{ url_for('static', path='js/dashboard.js') }}"></script>
+</body>
+
+</html>

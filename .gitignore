@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+myenv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Firebase service account keys
+*firebase*adminsdk*.json
+service-account-key.json
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+vibesecurityco-firebase-adminsdk-fbsvc-bba0a870cf.json
+
+.pytest_cache/
+
+firestore.rules
+
+.ruff_cache/

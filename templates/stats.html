@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZMGGQNWFB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YZMGGQNWFB');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Security - Statistics</title>
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script>
+    const firebaseConfig = {
+        apiKey: "{{ firebase_config.api_key }}",
+        authDomain: "{{ firebase_config.auth_domain }}",
+        projectId: "{{ firebase_config.project_id }}",
+        storageBucket: "{{ firebase_config.storage_bucket }}",
+        messagingSenderId: "{{ firebase_config.messaging_sender_id }}",
+        appId: "{{ firebase_config.app_id }}",
+        measurementId: "{{ firebase_config.measurement_id }}"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    </script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="/" class="font-bold text-xl">Vibe Security</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <a href="/" class="text-gray-600 hover:text-gray-900 mr-4">Home</a>
+                    <a href="/dashboard" class="text-gray-600 hover:text-gray-900">Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Stats Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">Scan Statistics</h1>
+
+        <!-- Summary Stats -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Summary Statistics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                <div class="bg-indigo-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-indigo-900">Total Scans</h3>
+                    <p id="totalScans" class="text-3xl font-bold text-indigo-600 mt-2">0</p>
+                </div>
+                <div class="bg-green-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-green-900">Unique Domains</h3>
+                    <p id="uniqueDomains" class="text-3xl font-bold text-green-600 mt-2">0</p>
+                </div>
+                <div class="bg-purple-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-purple-900">Average Scans per Domain</h3>
+                    <p id="avgScansPerDomain" class="text-3xl font-bold text-purple-600 mt-2">0</p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-blue-900">Total Users</h3>
+                    <p id="totalUsers" class="text-3xl font-bold text-blue-600 mt-2">0</p>
+                </div>
+                <div class="bg-yellow-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-yellow-900">Avg. Time to Load</h3>
+                    <p id="avgTimeToLoad" class="text-3xl font-bold text-yellow-600 mt-2">0s</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scan Trends -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Scan Trends</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Cumulative Scans Over Time</h3>
+                    <canvas id="scanTrendChart" class="w-full h-64"></canvas>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">User Type Distribution</h3>
+                    <canvas id="userTypeChart" class="w-full h-64"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load Time Trends -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Load Time Trends</h2>
+            <div class="w-full">
+                <canvas id="loadTimeChart" class="w-full h-96"></canvas>
+            </div>
+        </div>
+
+        <!-- Domain Stats -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Domain Statistics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">All Scanned Domains</h3>
+                    <div id="domainStats"
+                        class="space-y-1 max-h-[500px] overflow-y-auto pr-4 border border-gray-200 rounded-lg">
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                            <div class="h-4 bg-gray-200 rounded w-1/2 mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Domain Distribution</h3>
+                    <canvas id="domainChart" class="w-full h-64"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add timing breakdown section -->
+    <div id="timingBreakdown" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Content will be populated by JavaScript -->
+    </div>
+
+    <script>
+        // Initialize charts
+        let domainChart, scanTrendChart, userTypeChart, loadTimeChart;
+
+        // Function to normalize domain names
+        function normalizeDomain(url) {
+            try {
+                const urlObj = new URL(url);
+                return urlObj.hostname;
+            } catch (e) {
+                return url;
+            }
+        }
+
+        // Function to format date
+        function formatDate(timestamp) {
+            const date = new Date(timestamp.seconds * 1000);
+            return date.toLocaleDateString();
+        }
+
+        // Function to update domain stats
+        function updateDomainStats(domains) {
+            const domainStats = document.getElementById('domainStats');
+            domainStats.innerHTML = '';
+
+            domains.forEach(domain => {
+                const div = document.createElement('div');
+                div.className = 'flex justify-between items-center py-2 border-b border-gray-100';
+                div.innerHTML = `
+                    <span class="text-gray-900 truncate mr-4">${domain.domain}</span>
+                    <span class="text-indigo-600 font-medium whitespace-nowrap">${domain.count} scans</span>
+                `;
+                domainStats.appendChild(div);
+            });
+        }
+
+        // Function to update charts
+        function updateCharts(data) {
+            // Domain Distribution Chart
+            if (domainChart) domainChart.destroy();
+            domainChart = new Chart(document.getElementById('domainChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: data.domains.map(d => d.domain),
+                    datasets: [{
+                        data: data.domains.map(d => d.count),
+                        backgroundColor: [
+                            '#4F46E5', '#7C3AED', '#EC4899', '#F59E0B', '#10B981'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        }
+                    }
+                }
+            });
+
+            // Scan Trend Chart
+            if (scanTrendChart) scanTrendChart.destroy();
+            scanTrendChart = new Chart(document.getElementById('scanTrendChart'), {
+                type: 'line',
+                data: {
+                    labels: data.trends.map(t => t.date),
+                    datasets: [{
+                        label: 'Cumulative Scans',
+                        data: data.trends.map(t => t.cumulative),
+                        borderColor: '#4F46E5',
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        fill: true,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Scans'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // User Type Distribution Chart
+            if (userTypeChart) userTypeChart.destroy();
+            userTypeChart = new Chart(document.getElementById('userTypeChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Authenticated Users', 'Front Page Users'],
+                    datasets: [{
+                        data: [
+                            data.userStats.authenticated,
+                            data.userStats.frontPage
+                        ],
+                        backgroundColor: [
+                            '#4F46E5',  // Indigo for authenticated
+                            '#10B981'   // Green for front page
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Load Time Stats
+            if (data.timingStats) {
+                document.getElementById('avgTimeToLoad').textContent =
+                    `${data.timingStats.avgTimeToLoad.toFixed(2)}s`;
+
+                // Load Time Trend Chart
+                if (loadTimeChart) loadTimeChart.destroy();
+
+                // Filter out data points above 500 seconds
+                const filteredData = data.timingStats.trends.map(t => ({
+                    date: t.date,
+                    domain: t.domain || 'Unknown Domain',  // Add domain to the data
+                    totalTime: t.totalTime <= 500 ? t.totalTime : null,
+                    httpsTime: t.httpsTime <= 500 ? t.httpsTime : null,
+                    sslTime: t.sslTime <= 500 ? t.sslTime : null
+                }));
+
+                loadTimeChart = new Chart(document.getElementById('loadTimeChart'), {
+                    type: 'line',
+                    data: {
+                        labels: filteredData.map(t => t.date),
+                        datasets: [
+                            {
+                                label: 'Total Time',
+                                data: filteredData.map(t => t.totalTime),
+                                borderColor: '#F59E0B',
+                                tension: 0.1,
+                                spanGaps: true,
+                                pointRadius: 4,
+                                pointHoverRadius: 6
+                            },
+                            {
+                                label: 'HTTPS Check',
+                                data: filteredData.map(t => t.httpsTime),
+                                borderColor: '#10B981',
+                                tension: 0.1,
+                                spanGaps: true,
+                                pointRadius: 4,
+                                pointHoverRadius: 6
+                            },
+                            {
+                                label: 'SSL Check',
+                                data: filteredData.map(t => t.sslTime),
+                                borderColor: '#3B82F6',
+                                tension: 0.1,
+                                spanGaps: true,
+                                pointRadius: 4,
+                                pointHoverRadius: 6
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Seconds'
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    title: function (context) {
+                                        const dataIndex = context[0].dataIndex;
+                                        return [
+                                            filteredData[dataIndex].domain,
+                                            filteredData[dataIndex].date
+                                        ];
+                                    },
+                                    label: function (context) {
+                                        return `${context.dataset.label}: ${context.raw.toFixed(3)}s`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Add timing breakdown table
+                const timingBreakdown = document.getElementById('timingBreakdown');
+                if (timingBreakdown) {
+                    timingBreakdown.innerHTML = `
+                        <div class="mt-8">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Check Timing Breakdown</h3>
+                            <div class="bg-white rounded-lg shadow overflow-hidden">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Check</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Average Time</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% of Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        ${Object.entries(data.timingStats.averages).map(([check, time]) => `
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${check}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${time.toFixed(3)}s</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                        <div class="bg-indigo-600 h-2.5 rounded-full" style="width: ${(time / data.timingStats.avgTotalTime * 100).toFixed(1)}%"></div>
+                                                    </div>
+                                                    ${(time / data.timingStats.avgTotalTime * 100).toFixed(1)}%
+                                                </td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                }
+            } else {
+                // Hide or show placeholder for timing stats
+                document.getElementById('avgTimeToLoad').textContent = 'N/A';
+                if (loadTimeChart) {
+                    loadTimeChart.destroy();
+                    document.getElementById('loadTimeChart').getContext('2d').clearRect(0, 0,
+                        document.getElementById('loadTimeChart').width,
+                        document.getElementById('loadTimeChart').height);
+                }
+                const timingBreakdown = document.getElementById('timingBreakdown');
+                if (timingBreakdown) {
+                    timingBreakdown.innerHTML = '<p class="text-gray-500 italic">No timing data available</p>';
+                }
+            }
+
+            // Update summary stats
+            document.getElementById('totalScans').textContent = data.summary.totalScans;
+            document.getElementById('uniqueDomains').textContent = data.summary.uniqueDomains;
+            document.getElementById('avgScansPerDomain').textContent = data.summary.avgScansPerDomain.toFixed(1);
+            document.getElementById('totalUsers').textContent = data.summary.totalUsers;
+        }
+
+        // Fetch and process stats
+        async function fetchStats() {
+            try {
+                const response = await fetch('/api/stats');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch stats');
+                }
+                const data = await response.json();
+
+                updateDomainStats(data.domains);
+                updateCharts(data);
+            } catch (error) {
+                console.error('Error fetching stats:', error);
+                // Show error message
+                const domainStats = document.getElementById('domainStats');
+                domainStats.innerHTML = `
+                    <div class="text-red-600">
+                        Error loading statistics. Please try again later.
+                    </div>
+                `;
+            }
+        }
+
+        // Initial load
+        fetchStats();
+
+        // Refresh stats every 5 minutes
+        setInterval(fetchStats, 5 * 60 * 1000);
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4">Vibe Security</h3>
+                    <p class="text-gray-400">Simple security scanning for the modern web.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Product</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/#pricing" class="text-gray-400 hover:text-white">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Company</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/blog" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Legal</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="/privacy" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="/terms" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>© 2025 Vibe Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
