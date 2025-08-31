@@ -21,6 +21,11 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     
+    - name: Set up Firebase credentials
+      run: |
+        echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}' > vibesecurityco-firebase-adminsdk-fbsvc-bba0a870cf.json
+        echo "GOOGLE_APPLICATION_CREDENTIALS=$(pwd)/vibesecurityco-firebase-adminsdk-fbsvc-bba0a870cf.json" >> $GITHUB_ENV
+    
     - name: Cache pip dependencies
       uses: actions/cache@v3
       with:
