@@ -95,7 +95,13 @@ def create_app():
         response = await call_next(request)
         response.headers["Cross-Origin-Opener-Policy"] = "same-origin-allow-popups"
         response.headers["Content-Security-Policy"] = (
-            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.gstatic.com https://www.googletagmanager.com https://platform.twitter.com https://syndication.twitter.com https://www.producthunt.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com https://platform.twitter.com https://www.producthunt.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' data: https://api.producthunt.com; connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com https://syndication.twitter.com https://api.twitter.com https://www.producthunt.com https://api.producthunt.com; frame-src 'self' https://platform.twitter.com https://www.producthunt.com;"
+            "default-src 'self'; "
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.gstatic.com https://www.googletagmanager.com https://platform.twitter.com https://syndication.twitter.com https://www.producthunt.com; "
+            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com https://platform.twitter.com https://www.producthunt.com; "
+            "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; "
+            "img-src 'self' data: https://api.producthunt.com; "
+            "connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com https://syndication.twitter.com https://api.twitter.com https://www.producthunt.com https://api.producthunt.com; "
+            "frame-src 'self' https://platform.twitter.com https://www.producthunt.com;"
         )
         response.headers["X-Frame-Options"] = "SAMEORIGIN"
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains; preload"
