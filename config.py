@@ -94,6 +94,7 @@ def create_app():
     async def add_security_headers(request: Request, call_next):
         response = await call_next(request)
         response.headers["Cross-Origin-Opener-Policy"] = "same-origin-allow-popups"
+        response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';"
         return response
 
     # Mount static files
