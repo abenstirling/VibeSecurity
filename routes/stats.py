@@ -3,7 +3,6 @@ Statistics routes for Vibe Security.
 Contains endpoints for accessing usage statistics and analytics.
 """
 
-
 from fastapi import APIRouter, HTTPException, Request
 
 from config import FIREBASE_CONFIG, db, templates
