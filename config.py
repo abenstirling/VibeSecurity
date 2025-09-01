@@ -106,7 +106,8 @@ def create_app():
         response.headers["X-Frame-Options"] = "SAMEORIGIN"
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains; preload"
         response.headers["Server"] = "WebServer"
-        response.headers.pop("X-Powered-By", None)
+        if "X-Powered-By" in response.headers:
+            del response.headers["X-Powered-By"]
         return response
 
     # Mount static files
