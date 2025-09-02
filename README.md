@@ -81,12 +81,20 @@ pip install -r requirements.txt
 The security scanner is implemented in Go for improved performance. To build the scanner:
 
 ```bash
-# Install Go dependencies and build scanner
+# Install Go dependencies
 go mod tidy
+
+# Build for multiple platforms (recommended)
+chmod +x build.sh && ./build.sh
+
+# OR build for current platform only
 go build -o goscan main.go
 ```
 
-The `goscan` executable will be automatically used by the Python application.
+The scanner automatically detects the platform and uses the correct executable:
+- `goscan-linux-amd64` - Linux servers (Render, AWS, etc.)
+- `goscan-darwin-amd64` - Intel macOS
+- `goscan-darwin-arm64` - Apple Silicon macOS
 
 ### Development Commands
 ```bash
