@@ -77,6 +77,17 @@ All free tier checks plus:
 pip install -r requirements.txt
 ```
 
+### Go Scanner Setup
+The security scanner is implemented in Go for improved performance. To build the scanner:
+
+```bash
+# Install Go dependencies and build scanner
+go mod tidy
+go build -o goscan main.go
+```
+
+The `goscan` executable will be automatically used by the Python application.
+
 ### Development Commands
 ```bash
 # Run tests
@@ -126,7 +137,10 @@ Application will start on `http://localhost:8000`
 ├── config.py              # Firebase & FastAPI configuration
 ├── auth.py                # Authentication utilities
 ├── tasks.py               # Background scheduled tasks
-├── scanner.py             # Security scanning logic
+├── scanner.py             # Security scanning wrapper (calls Go executable)
+├── main.go                # Go-based security scanner implementation
+├── go.mod                 # Go module dependencies
+├── goscan                 # Compiled Go scanner executable
 ├── routes/                # Route modules
 │   ├── main.py           # Page routes (/, /dashboard, /blog, /privacy, /terms)
 │   ├── api.py            # Core API (scan, contact, verify-token)
@@ -199,6 +213,7 @@ graph LR
 
 ### Tech Stack
 - **Backend**: FastAPI + Firebase (Auth & Firestore)
+- **Scanner**: Go (high-performance security scanning)
 - **Frontend**: HTML/CSS/JavaScript (modular approach)
 - **Styling**: Tailwind CSS + Custom CSS
 - **Database**: Firestore (NoSQL document database)
@@ -206,7 +221,7 @@ graph LR
 - **Deployment**: Render + Firebase Hosting
 
 ### Key Features
-- **Security Scanning**: Comprehensive website vulnerability assessment
+- **Security Scanning**: High-performance Go-based website vulnerability assessment
 - **User Authentication**: Firebase-based secure login system
 - **Scan History**: Persistent storage and management of scan results
 - **Scheduled Scans**: Automated background scanning with configurable intervals
