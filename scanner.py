@@ -22,11 +22,11 @@ class SecurityScanner:
     def _get_executable_path(self) -> str:
         """Get the correct executable path based on the platform"""
         base_dir = os.path.dirname(__file__)
-        
+
         # Detect platform
         system = platform.system().lower()
         machine = platform.machine().lower()
-        
+
         # Map platform to executable name
         if system == "linux":
             executable = "goscan-linux-amd64"
@@ -38,13 +38,13 @@ class SecurityScanner:
         else:
             # Default to Linux for unknown platforms (most servers)
             executable = "goscan-linux-amd64"
-        
+
         executable_path = os.path.join(base_dir, executable)
-        
+
         # Fallback to generic goscan if platform-specific doesn't exist
         if not os.path.exists(executable_path):
             executable_path = os.path.join(base_dir, "goscan")
-        
+
         return executable_path
 
     async def scan(self) -> dict[str, Any]:
